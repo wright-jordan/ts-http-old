@@ -1,5 +1,4 @@
 /// <reference types="node" />
-/// <reference types="node" />
 import http from "http";
 export interface Context {
 }
@@ -9,22 +8,13 @@ export interface Handler {
 export interface Middleware<UseOptions extends Record<string, unknown> = {}> {
     use(next: Handler, opts?: UseOptions): Handler;
 }
-export declare type Routes = Record<string, Handler>;
+export type Routes = Record<string, Handler>;
 export declare function Router(routes: Routes, defaultRoute: Handler): Handler;
-declare class PayloadTooLargeError extends Error {
-    constructor();
-}
-/**
- * @throws {@link PayloadTooLargeError}
- * @throws `unknown`
- */
-declare function read(req: http.IncomingMessage, options?: {
-    maxBytes: number;
-}): Promise<Buffer>;
+import { PayloadTooLargeError } from "./errors.js";
 export declare const errors: {
     PayloadTooLargeError: typeof PayloadTooLargeError;
 };
+import { read } from "./util.js";
 export declare const util: {
     read: typeof read;
 };
-export {};
