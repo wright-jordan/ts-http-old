@@ -1,5 +1,5 @@
 import type http from "http";
-import { PayloadTooLargeError } from "./errors.js";
+import { PayloadTooLargeError } from "./read.errors.js";
 
 /**
  * @throws {@link PayloadTooLargeError}

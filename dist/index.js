@@ -3,7 +3,7 @@ export function Router(routes, defaultRoute) {
         await (routes[req.url.split("?", 1)[0]] || defaultRoute)(req, res, ctx);
     };
 }
-import { PayloadTooLargeError } from "./errors.js";
+import { PayloadTooLargeError } from "./lib/read/read.errors.js";
 export const errors = { PayloadTooLargeError };
-import { read } from "./util.js";
+import { read } from "./lib/read/read.js";
 export const util = { read };

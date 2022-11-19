@@ -13,11 +13,11 @@ export interface Middleware<UseOptions extends Record<string, unknown> = {}> {
 }
 export type Routes = Record<string, Handler>;
 export declare function Router(routes: Routes, defaultRoute: Handler): Handler;
-import { PayloadTooLargeError } from "./errors.js";
+import { PayloadTooLargeError } from "./lib/read/read.errors.js";
 export declare const errors: {
     PayloadTooLargeError: typeof PayloadTooLargeError;
 };
-import { read } from "./util.js";
+import { read } from "./lib/read/read.js";
 export declare const util: {
     read: typeof read;
 };

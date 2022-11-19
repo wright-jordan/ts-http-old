@@ -1,4 +1,4 @@
-import { PayloadTooLargeError } from "./errors.js";
+import { PayloadTooLargeError } from "./read.errors.js";
 /**
  * @throws {@link PayloadTooLargeError}
  * @throws `unknown`

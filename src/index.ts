@@ -14,6 +14,9 @@ export interface Handler {
   ): Promise<void>;
 }
 
+// export interface Middleware {
+//   use(next: Handler, opts?: unknown): Handler;
+// }
 export interface Middleware<UseOptions extends Record<string, unknown> = {}> {
   use(next: Handler, opts?: UseOptions): Handler;
 }
@@ -26,8 +29,8 @@ export function Router(routes: Routes, defaultRoute: Handler): Handler {
   };
 }
 
-import { PayloadTooLargeError } from "./errors.js";
+import { PayloadTooLargeError } from "./lib/read/read.errors.js";
 export const errors = { PayloadTooLargeError };
 
-import { read } from "./util.js";
+import { read } from "./lib/read/read.js";
 export const util = { read };
