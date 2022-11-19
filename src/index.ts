@@ -2,6 +2,10 @@ import type http from "http";
 
 export interface Context {}
 
+export interface InjectableHandler<T extends Record<string, unknown>> {
+  (dependencies: T): Handler;
+}
+
 export interface Handler {
   (
     req: http.IncomingMessage,
