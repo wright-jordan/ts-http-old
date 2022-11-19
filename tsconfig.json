@@ -18,6 +18,7 @@
 
     /* Emit */
     "declaration": true,
+    "importsNotUsedAsValues": "error",
     "outDir": "./dist",
 
     /* Interop Constraints */
