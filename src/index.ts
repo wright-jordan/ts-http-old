@@ -5,6 +5,9 @@ export interface Context {}
 export interface InjectableHandler<T extends Record<string, unknown>> {
   (dependencies: T): Handler;
 }
+// interface Injectable<T, U> {
+//   (dependencies: T): U;
+// }
 
 export interface Handler {
   (
