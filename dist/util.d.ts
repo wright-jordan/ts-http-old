@@ -1,6 +1,6 @@
 /// <reference types="node" />
 /// <reference types="node" />
-import http from "http";
+import type http from "http";
 /**
  * @throws {@link PayloadTooLargeError}
  * @throws `unknown`

@@ -1,4 +1,4 @@
-import http from "http";
+import type http from "http";
 
 export interface Context {}
 
