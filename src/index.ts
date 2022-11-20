@@ -15,7 +15,7 @@ export interface Handler {
 }
 
 export interface Middleware {
-  use(next: Handler, opts?: any): Handler;
+  use(next: Handler, opts?: unknown): Handler;
 }
 
 export type Routes = Record<string, Handler>;
