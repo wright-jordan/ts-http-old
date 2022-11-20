@@ -2,12 +2,9 @@ import type http from "http";
 
 export interface Context {}
 
-export interface InjectableHandler<T extends Record<string, unknown>> {
-  (dependencies: T): Handler;
+export interface Injectable<D, E> {
+  (deps: D): E;
 }
-// interface Injectable<T, U> {
-//   (dependencies: T): U;
-// }
 
 export interface Handler {
   (
@@ -17,11 +14,8 @@ export interface Handler {
   ): Promise<void>;
 }
 
-// export interface Middleware {
-//   use(next: Handler, opts?: unknown): Handler;
-// }
-export interface Middleware<UseOptions extends Record<string, unknown> = {}> {
-  use(next: Handler, opts?: UseOptions): Handler;
+export interface Middleware {
+  (next: Handler): Handler;
 }
 
 export type Routes = Record<string, Handler>;
