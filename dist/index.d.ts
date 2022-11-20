@@ -9,7 +9,7 @@ export interface Handler {
     (req: http.IncomingMessage, res: http.ServerResponse, ctx: Context): Promise<void>;
 }
 export interface Middleware {
-    (next: Handler): Handler;
+    (next: Handler, opts?: any): Handler;
 }
 export type Routes = Record<string, Handler>;
 export declare function Router(routes: Routes, defaultRoute: Handler): Handler;
