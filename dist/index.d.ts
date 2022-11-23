@@ -2,8 +2,11 @@
 import type http from "http";
 export interface Context {
 }
+export interface Injectable<Dependencies, T> {
+    (deps: Dependencies): T;
+}
 export interface Handler {
-    handle(req: http.IncomingMessage, res: http.ServerResponse, ctx: Context): Promise<void>;
+    (req: http.IncomingMessage, res: http.ServerResponse, ctx: Context): Promise<void>;
 }
 export interface Middleware {
     use(next: Handler, opts?: unknown): Handler;
@@ -11,12 +14,7 @@ export interface Middleware {
 export interface Routes {
     [path: string]: Handler;
 }
-export declare class Router implements Handler {
-    #private;
-    constructor();
-    add(path: string | null, handler: Handler): void;
-    handle(req: http.IncomingMessage, res: http.ServerResponse, ctx: Context): Promise<void>;
-}
+export declare function Router(routes: Routes, defaultHandler: Handler): Handler;
 import { PayloadTooLargeError } from "./lib/read/read.errors.js";
 export declare const errors: {
     PayloadTooLargeError: typeof PayloadTooLargeError;
