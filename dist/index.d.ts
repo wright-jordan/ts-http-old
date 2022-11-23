@@ -5,6 +5,9 @@ export interface Context {
 export interface Handler {
     (req: http.IncomingMessage, res: http.ServerResponse, ctx: Context): Promise<void>;
 }
+export interface Injectable<T> {
+    (deps?: unknown): T;
+}
 export interface Middleware {
     use(next: Handler, opts?: unknown): Handler;
 }
