@@ -10,10 +10,6 @@ export interface Handler {
   ): Promise<void>;
 }
 
-export interface Injectable<T> {
-  (deps?: unknown): T;
-}
-
 export interface Middleware {
   use(next: Handler, opts?: unknown): Handler;
 }
