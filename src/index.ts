@@ -10,17 +10,16 @@ export interface Handler {
   ): Promise<void>;
 }
 
-export interface Middleware {
-  use(next: Handler, opts?: unknown): Handler;
-}
-
-export interface Routes {
-  [path: string]: Handler;
-}
-
-export function Router(routes: Routes, defaultHandler: Handler): Handler {
+export function Router(
+  routes: Map<string, Handler>,
+  defaultHandler: Handler
+): Handler {
   return async function router(req, res, ctx) {
-    await (routes[req.url!.split("?", 1)[0]!] || defaultHandler)(req, res, ctx);
+    await (routes.get(req.url!.split("?", 1)[0]!) || defaultHandler)(
+      req,
+      res,
+      ctx
+    );
   };
 }
 

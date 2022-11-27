@@ -1,6 +1,6 @@
 export function Router(routes, defaultHandler) {
     return async function router(req, res, ctx) {
-        await (routes[req.url.split("?", 1)[0]] || defaultHandler)(req, res, ctx);
+        await (routes.get(req.url.split("?", 1)[0]) || defaultHandler)(req, res, ctx);
     };
 }
 import { PayloadTooLargeError } from "./lib/read/read.errors.js";
