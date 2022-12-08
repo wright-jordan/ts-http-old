@@ -1,6 +1,7 @@
-export function Router(routes, defaultHandler) {
+/** Returns a function that can be called within a {@link http.RequestListener} to lookup handlers. */
+export function Router(routes, fallback) {
     return async function router(req, res, ctx) {
-        await (routes.get(req.url.split("?", 1)[0]) || defaultHandler)(req, res, ctx);
+        await (routes.get(req.url.split("?", 1)[0]) || fallback)(req, res, ctx);
     };
 }
 /** Read request body into a utf8 string. */

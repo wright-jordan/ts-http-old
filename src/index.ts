@@ -1,7 +1,9 @@
 import type http from "http";
 
+/** Object that can be used to persist data throughout a request. */
 export interface Context {}
 
+/** Function that handles a request.*/
 export interface Handler {
   (
     req: http.IncomingMessage,
@@ -10,16 +12,13 @@ export interface Handler {
   ): Promise<void>;
 }
 
+/** Returns a function that can be called within a {@link http.RequestListener} to lookup handlers. */
 export function Router(
   routes: Map<string, Handler>,
-  defaultHandler: Handler
+  fallback: Handler
 ): Handler {
   return async function router(req, res, ctx) {
-    await (routes.get(req.url!.split("?", 1)[0]!) || defaultHandler)(
-      req,
-      res,
-      ctx
-    );
+    await (routes.get(req.url!.split("?", 1)[0]!) || fallback)(req, res, ctx);
   };
 }
 
