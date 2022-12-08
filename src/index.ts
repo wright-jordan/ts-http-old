@@ -23,8 +23,16 @@ export function Router(
   };
 }
 
-import { PayloadTooLargeError } from "./lib/read/read.errors.js";
-export const errors = { PayloadTooLargeError };
-
-import { read } from "./lib/read/read.js";
-export const util = { read };
+export async function readString(
+  req: AsyncIterable<Buffer>
+): Promise<[str: string, err: unknown]> {
+  try {
+    const chunks: Buffer[] = [];
+    for await (const chunk of req) {
+      chunks.push(chunk);
+    }
+    return [Buffer.concat(chunks).toString("utf8"), null];
+  } catch (error) {
+    return ["", error];
+  }
+}

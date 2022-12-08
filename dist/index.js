@@ -3,7 +3,15 @@ export function Router(routes, defaultHandler) {
         await (routes.get(req.url.split("?", 1)[0]) || defaultHandler)(req, res, ctx);
     };
 }
-import { PayloadTooLargeError } from "./lib/read/read.errors.js";
-export const errors = { PayloadTooLargeError };
-import { read } from "./lib/read/read.js";
-export const util = { read };
+export async function readString(req) {
+    try {
+        const chunks = [];
+        for await (const chunk of req) {
+            chunks.push(chunk);
+        }
+        return [Buffer.concat(chunks).toString("utf8"), null];
+    }
+    catch (error) {
+        return ["", error];
+    }
+}
