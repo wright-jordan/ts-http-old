@@ -23,6 +23,7 @@ export function Router(
   };
 }
 
+/** Read request body into a utf8 string. */
 export async function readString(
   req: AsyncIterable<Buffer>
 ): Promise<[str: string, err: unknown]> {

@@ -3,6 +3,7 @@ export function Router(routes, defaultHandler) {
         await (routes.get(req.url.split("?", 1)[0]) || defaultHandler)(req, res, ctx);
     };
 }
+/** Read request body into a utf8 string. */
 export async function readString(req) {
     try {
         const chunks = [];
