@@ -4,14 +4,14 @@ export function Router(routes, fallback) {
         await (routes.get(req.url.split("?", 1)[0]) || fallback)(req, res, ctx);
     };
 }
-/** Read request body into a utf8 string. */
+/** Read request body into a utf-8 string. */
 export async function readString(req) {
     try {
         const chunks = [];
         for await (const chunk of req) {
             chunks.push(chunk);
         }
-        return [Buffer.concat(chunks).toString("utf8"), null];
+        return [Buffer.concat(chunks).toString("utf-8"), null];
     }
     catch (error) {
         return ["", error];
