@@ -31,7 +31,7 @@ export async function readString(
     for await (const chunk of req) {
       chunks.push(chunk);
     }
-    return [Buffer.concat(chunks).toString("utf8"), null];
+    return [Buffer.concat(chunks).toString("utf-8"), null];
   } catch (error) {
     return ["", error];
   }
