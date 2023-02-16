@@ -11,9 +11,9 @@ export async function readString(req) {
         for await (const chunk of req) {
             chunks.push(chunk);
         }
-        return [Buffer.concat(chunks).toString("utf-8"), null];
+        return { body: Buffer.concat(chunks).toString("utf-8"), err: null };
     }
     catch (error) {
-        return ["", error];
+        return { body: "", err: error };
     }
 }

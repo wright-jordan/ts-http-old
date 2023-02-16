@@ -11,4 +11,7 @@ export interface Handler {
 /** Returns a function that can be called within a {@link http.RequestListener} to lookup handlers. */
 export declare function Router(routes: Map<string, Handler>, fallback: Handler): Handler;
 /** Read request body into a utf-8 string. */
-export declare function readString(req: AsyncIterable<Buffer>): Promise<[str: string, err: unknown]>;
+export declare function readString(req: AsyncIterable<Buffer>): Promise<{
+    body: string;
+    err: unknown;
+}>;
